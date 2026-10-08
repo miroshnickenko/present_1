@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Региональный отчёт — год к году</title>
+<title>Региональный отчёт — квартал 3, год к году</title>
 <style>
   :root{
     --bg:#FAFAF8; --surface:#FFFFFF; --border:rgba(20,20,20,0.08);
@@ -34,8 +34,8 @@
   section:nth-of-type(3){animation-delay:.5s;} section:nth-of-type(4){animation-delay:.6s;}
   section:nth-of-type(5){animation-delay:.7s;} section:nth-of-type(6){animation-delay:.8s;}
   section:nth-of-type(7){animation-delay:.9s;} section:nth-of-type(8){animation-delay:1s;}
-  h2{font-size:15px; font-weight:600; margin:0 0 4px;}
-  .subtitle{font-size:12px; color:var(--ink-muted); margin:0 0 14px;}
+  section:nth-of-type(9){animation-delay:1.1s;}
+  h2{font-size:15px; font-weight:600; margin:0 0 14px;}
   .chart-box{position:relative; width:100%;}
   .legend{display:flex; gap:16px; margin-top:10px; font-size:12px; color:var(--ink-muted); justify-content:center;}
   .legend span{display:flex; align-items:center; gap:4px;}
@@ -47,7 +47,6 @@
   tr.negative td.num.growth{color:var(--danger); font-weight:600;}
   tr.best td.num.growth{color:var(--pink); font-weight:600;}
   tr.new td.num.growth{color:var(--ink-muted); font-style:italic;}
-  footer{font-size:12px; color:var(--ink-muted); border-top:0.5px solid var(--border); padding-top:14px;}
   @keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
 </style>
 </head>
@@ -56,28 +55,43 @@
 
   <header>
     <h1>Региональный отчёт — год к году</h1>
-    <p>Выручка: по сети, без новых студий, по каждой студии, обучение, услуги, направления · январь–июнь</p>
+    <p>Июль–сентябрь 2026 к июлю–сентябрю 2025</p>
   </header>
 
-  <div class="kpi-row">
+  <div class="kpi-row" style="margin-bottom:12px;">
     <div class="kpi">
-      <div class="label">Выручка за полгода</div>
-      <div class="value">£479,805</div>
+      <div class="label">Выручка Q3 2026</div>
+      <div class="value">£287,079</div>
     </div>
     <div class="kpi">
       <div class="label">Рост год-к-году</div>
-      <div class="value accent">+69.9%</div>
+      <div class="value accent">+38.8%</div>
     </div>
     <div class="kpi">
       <div class="label">Рекордные месяцы</div>
-      <div class="value accent">Апрель · Май</div>
+      <div class="value accent">Июль · Август</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">С начала года (янв–сен)</div>
+      <div class="value">£766,585</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Рост с начала года</div>
+      <div class="value accent">+56.7%</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Без новых студий, с начала года</div>
+      <div class="value accent">+10.8%</div>
     </div>
   </div>
 
   <section id="chart-dynamics">
     <h2>Динамика выручки по месяцам</h2>
-    <div class="chart-box" style="height:300px;">
-      <canvas id="dynChart" role="img" aria-label="Линейный график динамики выручки по сети по месяцам за 2025 и 2026 год, с выделением рекордных апреля и мая"></canvas>
+    <div class="chart-box" style="height:320px;">
+      <canvas id="dynChart" role="img" aria-label="Динамика выручки по сети по месяцам с января по сентябрь, 2025 и 2026 год, с рекордами в июле и августе 2026"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -88,7 +102,7 @@
   <section id="chart-network">
     <h2>Выручка по сети (5 студий) — год к году</h2>
     <div class="chart-box" style="height:320px;">
-      <canvas id="revChart" role="img" aria-label="Выручка по сети по месяцам 2025 и 2026 года"></canvas>
+      <canvas id="netChart" role="img" aria-label="Выручка по сети за июль, август и сентябрь, 2025 и 2026 год, с рекордами в июле и августе"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -99,7 +113,7 @@
   <section id="chart-organic">
     <h2>Выручка без новых студий</h2>
     <div class="chart-box" style="height:320px;">
-      <canvas id="orgChart" role="img" aria-label="Выручка без новых студий по месяцам 2025 и 2026 года"></canvas>
+      <canvas id="orgChart" role="img" aria-label="Выручка без новых студий за июль, август и сентябрь, 2025 и 2026 год"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -110,7 +124,18 @@
   <section id="chart-studios">
     <h2>Выручка по студиям — год к году</h2>
     <div class="chart-box" style="height:360px;">
-      <canvas id="studioChart" role="img" aria-label="Выручка по каждой студии за первое полугодие, 2025 против 2026"></canvas>
+      <canvas id="studioChart" role="img" aria-label="Выручка по каждой студии за квартал 3, 2025 и 2026 год"></canvas>
+    </div>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
+      <span><span class="swatch" style="background:var(--pink)"></span>2026</span>
+    </div>
+  </section>
+
+  <section id="chart-studios-ytd">
+    <h2>Выручка по студиям — с начала года (январь–сентябрь)</h2>
+    <div class="chart-box" style="height:360px;">
+      <canvas id="studioYtdChart" role="img" aria-label="Выручка по каждой студии с января по сентябрь, 2025 и 2026 год"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -120,8 +145,8 @@
 
   <section id="chart-training">
     <h2>Обучение — год к году</h2>
-    <div class="chart-box" style="height:300px;">
-      <canvas id="trainingYoyChart" role="img" aria-label="Выручка от обучения по студиям, сравнение квартал 2 2025 и квартал 2 2026 года"></canvas>
+    <div class="chart-box" style="height:320px;">
+      <canvas id="trainingChart" role="img" aria-label="Выручка от обучения по студиям за квартал 3, 2025 и 2026 год"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -131,8 +156,8 @@
 
   <section id="chart-services">
     <h2>Услуги — год к году</h2>
-    <div class="chart-box" style="height:300px;">
-      <canvas id="servicesYoyChart" role="img" aria-label="Выручка от услуг по студиям, сравнение квартал 2 2025 и квартал 2 2026 года"></canvas>
+    <div class="chart-box" style="height:320px;">
+      <canvas id="servicesChart" role="img" aria-label="Выручка от услуг по студиям за квартал 3, 2025 и 2026 год"></canvas>
     </div>
     <div class="legend">
       <span><span class="swatch" style="background:var(--gray)"></span>2025</span>
@@ -141,11 +166,11 @@
   </section>
 
   <section id="chart-directions">
-    <h2>Направления выручки</h2>
-    <div class="chart-box" style="height:220px;">
-      <canvas id="directionsChart" role="img" aria-label="Микс выручки по направлениям — тату, пирсинг, обучение, продажи, прочее — за квартал 1 2025, квартал 2 2025, квартал 1 2026 и квартал 2 2026"></canvas>
+    <h2>Направления выручки — Q3 2025 и Q3 2026</h2>
+    <div class="chart-box" style="height:150px;">
+      <canvas id="directionsChart" role="img" aria-label="Микс выручки по направлениям, квартал 3 2025 и квартал 3 2026: тату, пирсинг, обучение, продажи, прочее"></canvas>
     </div>
-    <div class="legend">
+    <div class="legend" style="flex-wrap:wrap;">
       <span><span class="swatch" style="background:#3DA678"></span>Тату</span>
       <span><span class="swatch" style="background:#4A90D9"></span>Пирсинг</span>
       <span><span class="swatch" style="background:#8B7FD6"></span>Обучение</span>
@@ -153,28 +178,27 @@
       <span><span class="swatch" style="background:#9B9B96"></span>Прочее</span>
     </div>
     <table style="margin-top:16px;">
-      <tr><th>Направление</th><th style="text-align:right">Q1 2025</th><th style="text-align:right">Q2 2025</th><th style="text-align:right">Q1 2026</th><th style="text-align:right">Q2 2026</th></tr>
-      <tr><td>Тату</td><td class="num">56%</td><td class="num">69%</td><td class="num">73%</td><td class="num">73%</td></tr>
-      <tr><td>Пирсинг</td><td class="num">6%</td><td class="num">5%</td><td class="num">5%</td><td class="num">5%</td></tr>
-      <tr><td>Обучение</td><td class="num">26%</td><td class="num">14%</td><td class="num">12%</td><td class="num">12%</td></tr>
-      <tr><td>Продажи</td><td class="num">7%</td><td class="num">6%</td><td class="num">5%</td><td class="num">6%</td></tr>
-      <tr><td>Прочее</td><td class="num">5%</td><td class="num">6%</td><td class="num">5%</td><td class="num">4%</td></tr>
+      <tr><th>Направление</th><th style="text-align:right">Q3 2025</th><th style="text-align:right">Q3 2026</th></tr>
+      <tr><td>Тату</td><td class="num">71%</td><td class="num">76%</td></tr>
+      <tr><td>Пирсинг</td><td class="num">5%</td><td class="num">5%</td></tr>
+      <tr><td>Обучение</td><td class="num">15%</td><td class="num">10%</td></tr>
+      <tr><td>Продажи</td><td class="num">5%</td><td class="num">6%</td></tr>
+      <tr><td>Прочее</td><td class="num">4%</td><td class="num">3%</td></tr>
     </table>
   </section>
 
   <section id="growth-table">
     <h2>Рост по студиям</h2>
     <table>
-      <tr><th>Студия</th><th style="text-align:right">2025</th><th style="text-align:right">2026</th><th style="text-align:right">Рост</th></tr>
-      <tr class="best"><td>Wolverhampton</td><td class="num">£89,020</td><td class="num">£121,143</td><td class="num growth">+36.1%</td></tr>
-      <tr><td>Birmingham</td><td class="num">£146,601</td><td class="num">£166,752</td><td class="num growth">+13.7%</td></tr>
-      <tr class="new"><td>Bristol</td><td class="num">£2,510</td><td class="num">£98,983</td><td class="num growth">новая студия</td></tr>
-      <tr class="new"><td>Sheffield</td><td class="num">£0</td><td class="num">£62,959</td><td class="num growth">новая студия</td></tr>
-      <tr class="negative"><td>Walsall</td><td class="num">£44,296</td><td class="num">£29,968</td><td class="num growth">-32.3%</td></tr>
+      <tr><th>Студия</th><th style="text-align:right">Q3 2025</th><th style="text-align:right">Q3 2026</th><th style="text-align:right">Рост Q3</th><th style="text-align:right">С начала года</th></tr>
+      <tr class="best"><td>Bristol</td><td class="num">£42,727</td><td class="num">£59,635</td><td class="num growth">+39.6%</td><td class="num">×3.5</td></tr>
+      <tr><td>Birmingham</td><td class="num">£84,148</td><td class="num">£106,437</td><td class="num growth">+26.5%</td><td class="num">+18.4%</td></tr>
+      <tr><td>Wolverhampton</td><td class="num">£54,840</td><td class="num">£59,971</td><td class="num growth">+9.4%</td><td class="num">+25.9%</td></tr>
+      <tr class="new"><td>Sheffield</td><td class="num">£3,440</td><td class="num">£56,894</td><td class="num growth">×16.5</td><td class="num">×34.8</td></tr>
+      <tr class="negative"><td>Walsall</td><td class="num">£21,648</td><td class="num">£4,143</td><td class="num growth">-80.9%</td><td class="num">-48.7%</td></tr>
     </table>
   </section>
 
-  
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -185,37 +209,49 @@ var gray = isDark ? '#B4B2A9' : '#888780';
 var pink = isDark ? '#ED93B1' : '#D4537E';
 var grid = isDark ? '#33322E' : '#E7E5DE';
 var textColor = isDark ? '#A7A59C' : '#6B6B66';
+var surface = isDark ? '#1E1D1B' : '#FFFFFF';
 
-var accentRed = pink;
+function k(v){ return '£'+(v/1000).toFixed(0)+'k'; }
 
-// --- Dynamics chart: pretty trend line, 2025 vs 2026 ---
-var dyn2025 = [46084.31,46497.00,39886.50,43766.50,51479.50,54713.20];
-var dyn2026 = [72004.75,73804.25,72729.40,76744.40,92275.40,92247.15];
+// --- Chart 0: Dynamics Jan-Sep, 2025 vs 2026 ---
+var dyn2025 = [46084.31,46497.00,39886.50,43766.50,51479.50,54713.20,66512.51,72639.00,67650.50];
+var dyn2026 = [72004.75,73804.25,72679.40,76494.40,92275.40,92247.15,96428.20,100078.00,90573.00];
+
+var dynPlugin = {
+  id: 'dynLabel',
+  afterDatasetsDraw: function(chart){
+    var pt = chart.getDatasetMeta(1).data[7];
+    if(!pt) return;
+    var ctx = chart.ctx;
+    ctx.save(); ctx.font='600 11px sans-serif'; ctx.fillStyle=pink; ctx.textAlign='center';
+    ctx.fillText('£100k · рекорд', pt.x, pt.y-16);
+    ctx.restore();
+  }
+};
 
 new Chart(document.getElementById('dynChart'), {
   type:'line',
-  data:{ labels:['янв','фев','мар','апр','май','июн'],
+  data:{ labels:['янв','фев','мар','апр','май','июн','июл','авг','сен'],
     datasets:[
       { label:'2025', data:dyn2025, borderColor:gray, backgroundColor:'transparent',
-        borderWidth:1.5, borderDash:[4,4], pointRadius:3, pointBackgroundColor:gray,
-        tension:0.35, fill:false },
-      { label:'2026', data:dyn2026, borderColor:accentRed, backgroundColor:accentRed+'22',
-        borderWidth:2.5, pointRadius:[4,4,4,7,7,4], pointBackgroundColor:accentRed,
-        pointBorderColor: isDark ? '#1E1D1B' : '#FFFFFF', pointBorderWidth:2,
-        tension:0.35, fill:true }
+        borderWidth:1.5, borderDash:[4,4], pointRadius:3, pointBackgroundColor:gray, tension:0.35, fill:false },
+      { label:'2026', data:dyn2026, borderColor:pink, backgroundColor:pink+'22',
+        borderWidth:2.5, pointRadius:[4,7,4,7,7,4,7,7,4], pointBackgroundColor:pink,
+        pointBorderColor:surface, pointBorderWidth:2, tension:0.35, fill:true }
     ]},
-  options:{ responsive:true, maintainAspectRatio:false,
+  options:{ responsive:true, maintainAspectRatio:false, layout:{padding:{top:28}},
     animation:{duration:1000, easing:'easeOutQuart'},
     plugins:{legend:{display:false}},
     scales:{
-      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000).toFixed(0)+'k';}}},
+      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return k(v);}}},
       x:{grid:{display:false}, ticks:{color:textColor}}
-    }}
+    }},
+  plugins:[dynPlugin]
 });
 
-// --- Chart 1: Network-wide YoY ---
-var net2025 = [46084.31,46497.00,39886.50,43766.50,51479.50,54713.20];
-var net2026 = [72004.75,73804.25,72729.40,76744.40,92275.40,92247.15];
+// --- Chart 1: Network YoY, Jul-Sep ---
+var net2025 = [66512.51,72639.00,67650.50];
+var net2026 = [96428.20,100078.00,90573.00];
 var netGrowth = net2026.map(function(v,i){ return ((v-net2025[i])/net2025[i]*100).toFixed(1); });
 
 var netPlugin = {
@@ -228,27 +264,21 @@ var netPlugin = {
       ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
       ctx.fillText('+'+g+'%', bar.x, bar.y-8); ctx.restore();
     });
-    var febBar = meta.data[1];
-    if(febBar){ ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
-      ctx.fillText('прошлый рекорд', febBar.x, febBar.y-24); ctx.restore(); }
-    [3,4].forEach(function(i){
-      var bar = meta.data[i]; if(!bar) return;
+    [[0,'рекорд'],[1,'рекорд · £100k']].forEach(function(r){
+      var bar = meta.data[r[0]]; if(!bar) return;
       var x=bar.x, y=bar.y;
       ctx.save(); ctx.strokeStyle=pink; ctx.fillStyle=pink; ctx.lineWidth=1.5;
       ctx.beginPath(); ctx.moveTo(x,y-34); ctx.lineTo(x,y-14); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(x-4,y-19); ctx.lineTo(x,y-12); ctx.lineTo(x+4,y-19); ctx.stroke();
-      ctx.font='600 11px sans-serif'; ctx.textAlign='center'; ctx.fillText('рекорд', x, y-40);
+      ctx.font='600 11px sans-serif'; ctx.textAlign='center'; ctx.fillText(r[1], x, y-40);
       ctx.restore();
     });
-    var junBar = meta.data[5];
-    if(junBar){ ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
-      ctx.fillText('стабильность', junBar.x, junBar.y-24); ctx.restore(); }
   }
 };
 
-new Chart(document.getElementById('revChart'), {
+new Chart(document.getElementById('netChart'), {
   type:'bar',
-  data:{ labels:['янв','фев','мар','апр','май','июн'],
+  data:{ labels:['июль','август','сентябрь'],
     datasets:[
       {label:'2025', data:net2025, backgroundColor:gray, borderRadius:4, barPercentage:0.8, categoryPercentage:0.7},
       {label:'2026', data:net2026, backgroundColor:pink, borderRadius:4, barPercentage:0.8, categoryPercentage:0.7}
@@ -256,15 +286,15 @@ new Chart(document.getElementById('revChart'), {
   options:{ responsive:true, maintainAspectRatio:false, layout:{padding:{top:60}},
     animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
     scales:{
-      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000).toFixed(0)+'k';}}},
+      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return k(v);}}},
       x:{grid:{display:false}, ticks:{color:textColor}}
     }},
   plugins:[netPlugin]
 });
 
-// --- Chart 2: Organic-only YoY ---
-var org2025 = [46084.31,46497.00,39886.50,43766.50,51479.50,52203.20];
-var org2026 = [49857.00,47531.00,44469.00,52771.00,63353.40,59882.25];
+// --- Chart 2: Without new studios (Birmingham + Walsall + Wolverhampton) ---
+var org2025 = [54241.51,58974.00,47419.50];
+var org2026 = [55383.00,61224.30,53943.00];
 var orgGrowth = org2026.map(function(v,i){ return ((v-org2025[i])/org2025[i]*100).toFixed(1); });
 
 var orgPlugin = {
@@ -277,24 +307,15 @@ var orgPlugin = {
       ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
       ctx.fillText('+'+g+'%', bar.x, bar.y-8); ctx.restore();
     });
-    var mayBar = meta.data[4];
-    if(mayBar){
-      var x=mayBar.x, y=mayBar.y;
-      ctx.save(); ctx.strokeStyle=pink; ctx.fillStyle=pink; ctx.lineWidth=1.5;
-      ctx.beginPath(); ctx.moveTo(x,y-34); ctx.lineTo(x,y-14); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(x-4,y-19); ctx.lineTo(x,y-12); ctx.lineTo(x+4,y-19); ctx.stroke();
-      ctx.font='600 11px sans-serif'; ctx.textAlign='center'; ctx.fillText('рекорд', x, y-40);
-      ctx.restore();
-    }
-    var junBar = meta.data[5];
-    if(junBar){ ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
-      ctx.fillText('2-й лучший', junBar.x, junBar.y-24); ctx.restore(); }
+    var aug = meta.data[1];
+    if(aug){ ctx.save(); ctx.font='500 10px sans-serif'; ctx.fillStyle=textColor; ctx.textAlign='center';
+      ctx.fillText('2-й лучший', aug.x, aug.y-24); ctx.restore(); }
   }
 };
 
 new Chart(document.getElementById('orgChart'), {
   type:'bar',
-  data:{ labels:['янв','фев','мар','апр','май','июн'],
+  data:{ labels:['июль','август','сентябрь'],
     datasets:[
       {label:'2025', data:org2025, backgroundColor:gray, borderRadius:4, barPercentage:0.8, categoryPercentage:0.7},
       {label:'2026', data:org2026, backgroundColor:pink, borderRadius:4, barPercentage:0.8, categoryPercentage:0.7}
@@ -302,17 +323,13 @@ new Chart(document.getElementById('orgChart'), {
   options:{ responsive:true, maintainAspectRatio:false, layout:{padding:{top:60}},
     animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
     scales:{
-      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000).toFixed(0)+'k';}}},
+      y:{grid:{color:grid}, ticks:{color:textColor, callback:function(v){return k(v);}}},
       x:{grid:{display:false}, ticks:{color:textColor}}
     }},
   plugins:[orgPlugin]
 });
 
-// --- Chart 3: Per-studio H1 comparison ---
-var studioLabels = ['Birmingham','Wolverhampton','Bristol','Sheffield','Walsall'];
-var studio2025 = [146600.81,89020.00,2510.00,0.00,44296.20];
-var studio2026 = [166752.40,121143.25,98982.70,62959.00,29968.00];
-
+// --- Horizontal charts with value labels ---
 var valuePlugin = {
   id: 'valueLabels',
   afterDatasetsDraw: function(chart){
@@ -331,64 +348,40 @@ var valuePlugin = {
   }
 };
 
-new Chart(document.getElementById('studioChart'), {
-  type:'bar',
-  data:{ labels:studioLabels,
-    datasets:[
-      {label:'H1 2025', data:studio2025, backgroundColor:gray, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7},
-      {label:'H1 2026', data:studio2026, backgroundColor:pink, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7}
-    ]},
-  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, layout:{padding:{right:30}},
-    animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
-    scales:{
-      x:{max:210000, grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000)+'k';}}},
-      y:{grid:{display:false}, ticks:{color:textColor}}
-    }},
-  plugins:[valuePlugin]
-});
-// --- Chart 4: Training (обучение) YoY by studio ---
-new Chart(document.getElementById('trainingYoyChart'), {
-  type:'bar',
-  data:{ labels:['Bristol','Birmingham','Walsall','Wolverhampton','Sheffield'],
-    datasets:[
-      {label:'2025', data:[0,13208,3743,4425,0], backgroundColor:gray, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7},
-      {label:'2026', data:[11260,7380,5280,4729,1520], backgroundColor:pink, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7}
-    ]},
-  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, layout:{padding:{right:30}},
-    animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
-    scales:{
-      x:{max:16000, grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000)+'k';}}},
-      y:{grid:{display:false}, ticks:{color:textColor}}
-    }},
-  plugins:[valuePlugin]
-});
+function hbar(id, d2025, d2026, xmax){
+  new Chart(document.getElementById(id), {
+    type:'bar',
+    data:{ labels:['Birmingham','Wolverhampton','Bristol','Sheffield','Walsall'],
+      datasets:[
+        {label:'2025', data:d2025, backgroundColor:gray, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7},
+        {label:'2026', data:d2026, backgroundColor:pink, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7}
+      ]},
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, layout:{padding:{right:30}},
+      animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
+      scales:{
+        x:{max:xmax, grid:{color:grid}, ticks:{color:textColor, callback:function(v){return k(v);}}},
+        y:{grid:{display:false}, ticks:{color:textColor}}
+      }},
+    plugins:[valuePlugin]
+  });
+}
 
-// --- Chart 5: Services (услуги) YoY by studio ---
-new Chart(document.getElementById('servicesYoyChart'), {
-  type:'bar',
-  data:{ labels:['Birmingham','Wolverhampton','Bristol','Sheffield','Walsall'],
-    datasets:[
-      {label:'2025', data:[58038,41417,2415,0,17155], backgroundColor:gray, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7},
-      {label:'2026', data:[82335,52121,36645,28333,9999], backgroundColor:pink, borderRadius:4, barPercentage:0.75, categoryPercentage:0.7}
-    ]},
-  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, layout:{padding:{right:30}},
-    animation:{duration:900, easing:'easeOutQuart'}, plugins:{legend:{display:false}},
-    scales:{
-      x:{max:95000, grid:{color:grid}, ticks:{color:textColor, callback:function(v){return '£'+(v/1000)+'k';}}},
-      y:{grid:{display:false}, ticks:{color:textColor}}
-    }},
-  plugins:[valuePlugin]
-});
-// --- Chart 6: Revenue mix by direction, 4 quarters ---
+// order: Birmingham, Wolverhampton, Bristol, Sheffield, Walsall
+hbar('studioChart',   [84148.00,54839.50,42727.00,3440.00,21647.51], [106436.80,59970.50,59635.14,56893.76,4143.00], 135000);
+hbar('trainingChart', [14630,3328,9190,400,3448],                    [11027,3820,10112,2200,0],                      14000);
+hbar('servicesChart', [63866,49050,32167,3020,16957],                [86913,51951,46277,52491,3732],                 110000);
+hbar('studioYtdChart',[230748.81,143859.50,45237.00,3440.00,65943.71], [273189.20,181113.75,158617.84,119852.76,33811.00], 330000);
+
+// --- Directions mix, Q3 2025 vs Q3 2026 ---
 new Chart(document.getElementById('directionsChart'), {
   type:'bar',
-  data:{ labels:['Q1 2025','Q2 2025','Q1 2026','Q2 2026'],
+  data:{ labels:['Q3 2025','Q3 2026'],
     datasets:[
-      {label:'Тату', data:[56,69,73,73], backgroundColor:'#3DA678'},
-      {label:'Пирсинг', data:[6,5,5,5], backgroundColor:'#4A90D9'},
-      {label:'Обучение', data:[26,14,12,12], backgroundColor:'#8B7FD6'},
-      {label:'Продажи', data:[7,6,5,6], backgroundColor:'#E8942E'},
-      {label:'Прочее', data:[5,6,5,4], backgroundColor:'#9B9B96'}
+      {label:'Тату', data:[71,76], backgroundColor:'#3DA678'},
+      {label:'Пирсинг', data:[5,5], backgroundColor:'#4A90D9'},
+      {label:'Обучение', data:[15,10], backgroundColor:'#8B7FD6'},
+      {label:'Продажи', data:[5,6], backgroundColor:'#E8942E'},
+      {label:'Прочее', data:[4,3], backgroundColor:'#9B9B96'}
     ]},
   options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
     animation:{duration:900, easing:'easeOutQuart'},
